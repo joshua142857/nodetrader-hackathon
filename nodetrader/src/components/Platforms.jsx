@@ -34,7 +34,7 @@ const Platforms = () => {
             </p>
           </div>
       </div>
-        
+
     </div>
   )
 }
