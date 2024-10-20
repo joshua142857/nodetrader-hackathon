@@ -6,20 +6,14 @@ import { ReactFlow,
   useReactFlow,
 } from "@xyflow/react";
 import { shallow } from "zustand/shallow";
-import { useStore } from "./store";
+import { useStore } from "./nodeManager/store";
 import { tw } from "twind";
-import Osc from "./nodes/Osc";
-import Amp from "./nodes/Amp";
-import Out from "./nodes/Out";
-import MarketDataNode from "./nodes/Input";
+import MarketDataNode from "./nodeManager/Input";
 
 import "@xyflow/react/dist/style.css";
 
 
 const nodeTypes = {
-  osc: Osc,
-  amp: Amp,
-  out: Out,
   in: MarketDataNode
 };
 
@@ -52,18 +46,6 @@ export default function App() {
           fitView
         >
           <Panel className={tw('space-x-4')} position="top-right">
-            <button
-              className={tw('px-2 py-1 rounded bg-white shadow')}
-              onClick={() => store.createNode('osc')}
-            >
-              Add Osc
-            </button>
-            <button
-              className={tw('px-2 py-1 rounded bg-white shadow')}
-              onClick={() => store.createNode('amp')}
-            >
-              Add Amp
-            </button>
             <button
               className={tw('px-2 py-1 rounded bg-white shadow')}
               onClick={() => store.createNode('in')}

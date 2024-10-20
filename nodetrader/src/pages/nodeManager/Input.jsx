@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Handle } from "@xyflow/react";
-import { nodeStyles } from "./style/styles";
+import { nodeStyles } from "./nodeStyles/styles";
 
 const providerOptions = [
   { label: "Kalshi", value: "kalshi" },
