@@ -5,7 +5,7 @@ const About = () => {
     <div className="container mx-auto mt-10 p-6">
       <h1 className="text-4xl font-bold mb-6 text-gray-800">About Us</h1>
       <p className="text-lg text-gray-600">
-      Have you ever had a idea about the market but did not that the time or expertise to implement it? 
+      Have you ever had an idea about the market but did not that the time or expertise to implement it? 
       </p>
 
       <div className="mt-6">
