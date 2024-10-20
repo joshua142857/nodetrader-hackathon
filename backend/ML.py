@@ -10,7 +10,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import polars as pl
 from sklearn.model_selection import train_test_split
-from node_utils import *
+from backend.node_utils import *
 
 def open_data():
     with open('time_data.pickle', 'rb') as f:
@@ -53,9 +53,9 @@ def open_data():
         aggregate_function='first'  # or 'sum', 'mean', etc., depending on your needs
     )
     df = df.fill_null(strategy="forward")
-
+    return df
     # display(df,df)
-    model1 = logistic_alpha_models(x_ids, y_ids, df)
-    model2 = RNN_alpha_models(x_ids, y_ids, df)
-    model3 = Linear_alpha_models(x_ids, y_ids, df)
-    return model1, model2, model3
+    # model1 = logistic_alpha_models(x_ids, y_ids, df)
+    # model2 = RNN_alpha_models(x_ids, y_ids, df)
+    # model3 = Linear_alpha_models(x_ids, y_ids, df)
+    # return model1, model2, model3

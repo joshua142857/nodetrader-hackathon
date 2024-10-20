@@ -1,8 +1,6 @@
-// src/nodes/MachineLearningNode.tsx
 import React, { useState } from "react";
-import { Handle } from "@xyflow/react";
+import { Handle, useReactFlow } from "@xyflow/react";
 import { nodeStyles } from "./nodeStyles/styles";
-import axios from "axios";  // For making API requests
 
 const modelOptions = [
   { label: "RNN", value: "rnn" },
@@ -10,9 +8,22 @@ const modelOptions = [
   { label: "Logistic Regression", value: "logistic" },
 ];
 
-const MachineLearningNode = ({ id, data, updateNode }) => {
+const MachineLearningNode = ({ id, data }) => {
+  const { setNodes } = useReactFlow();
   const [selectedModel, setSelectedModel] = useState(data.modelType || "");
   const [modelParams, setModelParams] = useState(data.parameters || {});
+  const [results, setResults] = useState(data.results || null); // Add this line
+
+  const updateNode = (nodeId, updates) => {
+    setNodes((nodes) =>
+      nodes.map((node) => {
+        if (node.id === nodeId) {
+          return { ...node, data: { ...node.data, ...updates } };
+        }
+        return node;
+      })
+    );
+  };
 
   const handleModelChange = (e) => {
     const model = e.target.value;
@@ -29,11 +40,21 @@ const MachineLearningNode = ({ id, data, updateNode }) => {
 
   const handleRunModel = async () => {
     try {
-      const response = await axios.post("http://localhost:8000/train", {
-        model_type: selectedModel,
-        parameters: modelParams,
+      const response = await fetch("http://localhost:8000/train", {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ model_type: selectedModel, parameters: modelParams }),
       });
-      updateNode(id, { results: response.data.results });
+
+      const data = await response.json();
+
+      updateNode(id, { results: data.results });
+      setResults(data.results); // Add this line
+      console.log(data.results);
+      print(data);
+      print(data.results);
     } catch (error) {
       console.error("Failed to run the model:", error);
     }
@@ -120,6 +141,13 @@ const MachineLearningNode = ({ id, data, updateNode }) => {
       <button onClick={handleRunModel} className={nodeStyles.button}>
         Run Model
       </button>
+
+      {results && (
+        <div className={nodeStyles.resultsContainer}>
+          <h3 className={nodeStyles.resultsHeader}>Results:</h3>
+          <pre className={nodeStyles.resultsContent}>{JSON.stringify(results, null, 2)}</pre>
+        </div>
+      )}
 
       <Handle className={nodeStyles.handle} type="source" position="right" />
       <Handle className={nodeStyles.handle} type="target" position="left" />

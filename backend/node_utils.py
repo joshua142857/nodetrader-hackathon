@@ -60,7 +60,7 @@ def logistic_alpha_models(x_cols, y_cols, data):
         X,y = data_splitting(x_cols, col , dummy)
         x_train, x_test = train_test_split(X)
         y_train, y_test = train_test_split(y)
-        w, iteration,error,grads = logistic_reg(x_train, y_train, np.zeros(len(train_x[0])), 10**4, .1, 10**-4, .05, 1)
+        w, iteration,error,grads = logistic_reg(x_train, y_train, np.zeros(len(x_train[0])), 10**4, .1, 10**-4, .05, 1)
         Eout = cross_entropy(x_test, y_test,w)
         weights.append(w)
         test_error.append(Eout)

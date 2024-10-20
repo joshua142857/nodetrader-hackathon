@@ -1,5 +1,6 @@
 from backend.node_utils import logistic_alpha_models, RNN_alpha_models, Linear_alpha_models
 import pandas as pd
+from backend.ML import *
 import pickle
 
 def load_data():
@@ -10,7 +11,7 @@ def load_data():
     return raw
 
 def train_logistic_model(params):
-    data = load_data()
+    data = open_data()
     # Extract the necessary parameters
     x_cols = params.get("x_cols", [])
     y_cols = params.get("y_cols", [])
@@ -18,14 +19,14 @@ def train_logistic_model(params):
     return {"model": "logistic", "weights": model[1], "test_error": model[2]}
 
 def train_rnn_model(params):
-    data = load_data()
+    data = open_data()
     x_cols = params.get("x_cols", [])
     y_cols = params.get("y_cols", [])
     model = RNN_alpha_models(x_cols, y_cols, data)
     return {"model": "rnn", "results": model}
 
 def train_linear_model(params):
-    data = load_data()
+    data = open_data()
     x_cols = params.get("x_cols", [])
     y_cols = params.get("y_cols", [])
     model = Linear_alpha_models(x_cols, y_cols, data)
