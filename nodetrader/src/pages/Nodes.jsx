@@ -10,13 +10,15 @@ import { useStore } from "./nodeManager/store";
 import { tw } from "twind";
 import MarketDataNode from "./nodeManager/Input";
 import Out from "./nodeManager/Output";
+import NormalizationNode from "./nodeManager/Normalization";
 
 import "@xyflow/react/dist/style.css";
 
 
 const nodeTypes = {
   in: MarketDataNode,
-  out: Out
+  out: Out,
+  normalize: NormalizationNode
 };
 
 const selector = (store) => ({
@@ -59,6 +61,12 @@ export default function App() {
               onClick={() => store.createNode('out')}
             >
               Submit Trades (Output)
+            </button>
+            <button
+              className={tw('px-8 py-3 rounded bg-white shadow')}
+              onClick={() => store.createNode('normalize')}
+            >
+               Normalize Data
             </button>
           </Panel>
           <Background />

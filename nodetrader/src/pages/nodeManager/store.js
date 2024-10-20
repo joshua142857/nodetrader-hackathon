@@ -42,7 +42,17 @@ export const useStore = create((set, get) => ({
             set({ nodes: [...get().nodes, { id, type, data, position }] });
             break;
         }
-    }
+        case "normalize": {
+          const data = { 
+            normalizationType: "log", // Default to "log"
+            parameters: { base: 10 } // Default parameters for "log"
+          };
+          set({ nodes: [...get().nodes, { id, type, data, position }] });
+          break;
+        }
+        default:
+          console.warn(`Unknown node type: ${type}`);
+      }
   },
 
   updateNode(id, data) {
