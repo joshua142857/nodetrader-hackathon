@@ -1,14 +1,21 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { LuLayoutDashboard, LuBarChart4, LuDatabase } from 'react-icons/lu';
 
+const Sidebar = ({ handleExpand, resetStats }) => {
+  const [activeLink, setActiveLink] = useState(0);
 // ICONS
 import { LuLayoutDashboard, LuUser, LuBarChart4, LuInfo, LuLightbulb, LuCog } from 'react-icons/lu';
 
 const Sidebar = () => {
   const [activeLink, setActiveLink] = useState(0); 
 
-  const handleLinkClick = (index) => {
+  const handleLinkClick = (index, box) => {
     setActiveLink(index);
+    if (box === 'stats') {
+      handleExpand('stats'); // Expand stats when Dashboard is clicked
+    } else {
+      handleExpand(box); // Expand the selected box when Project Stats or Platforms is clicked
+    }
   };
 
   const SIDEBAR_LINKS = [
@@ -17,6 +24,9 @@ const Sidebar = () => {
     { id: 3, path: '/market', name: 'Market', icon: LuBarChart4 },
     { id: 4, path: '/about', name: 'About', icon: LuInfo },
     { id: 6, path: '/settings', name: 'Settings', icon: LuCog },
+    { id: 1, name: 'Dashboard', icon: LuLayoutDashboard, expandBox: 'stats' },
+    { id: 2, name: 'Project Stats', icon: LuDatabase, expandBox: 'project' },
+    { id: 3, name: 'Platforms', icon: LuBarChart4, expandBox: 'platforms' },
   ];
 
   return (
@@ -29,6 +39,13 @@ const Sidebar = () => {
         {SIDEBAR_LINKS.map((link, index) => (
           <li
             key={index}
+            className={`font-medium rounded-md py-2 px-5 hover:bg-gray-100 hover:text-indigo-500 ${
+              activeLink === index ? 'bg-indigo-100 text-indigo-500' : ''
+            }`}
+          >
+            <button
+              className="flex justify-center md:justify-start items-center md:space-x-5 w-full"
+              onClick={() => handleLinkClick(index, link.expandBox)}
             className={`font-medium rounded-md py-2 px-3 hover:bg-gray-100 hover:text-indigo-500 ${
               activeLink === index ? 'bg-indigo-100 text-indigo-500' : '' }`}
           >
@@ -37,11 +54,13 @@ const Sidebar = () => {
               className="flex justify-center md:justify-start items-center md:space-x-5 "
               onClick={() => handleLinkClick(index)}
             >
+              <span>{<link.icon />}</span>
+              <span className="text-sm text-gray-500 hidden md:flex">
               <span>{<link.icon />}</span> 
               <span className="text-base text-gray-500 hidden md:flex ">
                 {link.name}
               </span>
-            </Link>
+            </button>
           </li>
         ))}
       </ul>
