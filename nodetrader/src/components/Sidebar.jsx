@@ -16,8 +16,8 @@ const Sidebar = ({ handleExpand, resetStats }) => {
 
   const SIDEBAR_LINKS = [
     { id: 1, path: '/home', name: 'Dashboard', icon: LuLayoutDashboard, expandBox: 'stats' },
-    { id: 2, name: 'Project Stats', icon: LuUser, expandBox: 'project' },
-    { id: 3, name: 'Market', icon: LuBarChart4, expandBox: 'platforms' },
+    { id: 2, path: '/home', name: 'Project Stats', icon: LuUser, expandBox: 'project' },
+    { id: 3, path: '/home', name: 'Market', icon: LuBarChart4, expandBox: 'platforms' },
     { id: 4, path: '/about', name: 'About', icon: LuInfo },
     { id: 6, path: '/settings', name: 'Settings', icon: LuCog },
   ];

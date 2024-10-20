@@ -19,7 +19,7 @@ const Home = () => {
   };
 
   return (
-    <div className="relative p-5 min-h-screen overflow-x-hidden"> {/* Added overflow-x-hidden */}
+    <div className="relative p-5 min-h-screen">
       {/* Sidebar */}
       <Sidebar handleExpand={handleExpand} />
 

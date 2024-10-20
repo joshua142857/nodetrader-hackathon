@@ -12,6 +12,7 @@
   "dependencies": {
     "@xyflow/react": "^12.3.2",
     "apexcharts": "^3.54.1",
+    "axios": "^1.7.7",
     "chart.js": "^4.4.5",
     "package.json": "^0.0.0",
     "react": "^18.3.1",

@@ -32,15 +32,15 @@ const LoginPage = () => {
       </div>
 
       {/* Welcome Text */}
-      <h1 className="text-5xl font-extrabold text-black mb-4 text-center tracking-tight">
-        Welcome to TradeFlow!
+      <h1 className="text-5xl font-extrabold text-white mb-4 text-center tracking-tight">
+        Welcome to AlgoFlow!
       </h1>
-      <p className="text-lg text-grey-700 mb-8 text-center">
-        Sign up to revolutionize your trading experience
+      <p className="text-lg text-black-200 mb-1 text-center">
+        Sign up to revolutionize your trading experience!
       </p>
 
       {/* Animated Down Arrow */}
-      <div className="mt-8 text-gray-600 animate-bounce">
+      <div className="mt-8 text-black-300 animate-bounce">
         <p>&#x2193;</p>
       </div>
 

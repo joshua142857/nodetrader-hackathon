@@ -50,6 +50,11 @@ export const useStore = create((set, get) => ({
           set({ nodes: [...get().nodes, { id, type, data, position }] });
           break;
         }
+        case "ml": {
+          const data = { modelType: "logistic", parameters: { regStrength : 1 } }; // Default RNN parameters
+          set({ nodes: [...get().nodes, { id, type, data, position }] });
+          break;
+        }
         default:
           console.warn(`Unknown node type: ${type}`);
       }
