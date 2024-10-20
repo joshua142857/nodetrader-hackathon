@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Chart from 'react-apexcharts';
 
-const ProjectStatistics = () => {
+const ProjectStatistics = ({ expanded }) => {
   const [chartOptions] = useState({
     chart: {
       type: 'area',
@@ -36,13 +36,13 @@ const ProjectStatistics = () => {
     },
     series: [
       {
-        name: 'New users',
-        data: [6500, 6418, 6456, 6526, 6356, 6456],
+        name: 'Dollars',
+        data: [6500, 7130, 6427, 6839, 6356, 7280],
         color: '#1A56DB',
       },
     ],
     xaxis: {
-      categories: ['01 February', '02 February', '03 February', '04 February', '05 February', '06 February', '07 February'],
+      categories: ['14 October', '15 October', '16 October', '17 October', '18 October', '19 October', '20 October'],
       labels: {
         show: false,
       },
@@ -54,23 +54,23 @@ const ProjectStatistics = () => {
 
   const [chartSeries] = useState([
     {
-      name: 'New users',
-      data: [6500, 6418, 6456, 6526, 6356, 6456],
+      name: 'Dollars',
+      data: [6500, 7130, 6427, 6839, 6356, 7280],
     },
   ]);
 
   return (
     <div className="relative z-10">
-      <div className="max-w-sm w-full bg-white rounded-xl p-4 md:p-6 relative z-20">
+      <div className="w-full bg-white rounded-xl p-4 md:p-6 relative z-20">
         <div className="flex justify-between">
           <div>
             <h5 className="leading-none text-3xl font-bold text-gray-500 dark:text-black pb-2">32.4k</h5>
-            <p className="text-base font-normal text-gray-500 dark:text-gray-400">Users this week</p>
+            <p className="text-base font-normal text-gray-500 dark:text-gray-400">Profit and Loss</p>
           </div>
           <div className="flex items-center px-2.5 py-0.5 text-base font-semibold text-green-500 dark:text-green-500 text-center">
             12%
             <svg className="w-3 h-3 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 14">
-              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13V1m0 0L1 5m4-4 4 4" />
+              <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13V1m0 0L1 5m4-4 4 4" />
             </svg>
           </div>
         </div>
@@ -79,7 +79,7 @@ const ProjectStatistics = () => {
           options={chartOptions}
           series={chartSeries}
           type="area"
-          height="150" 
+          height={expanded ? "300" : "150"} 
           width="100%" 
         />
       </div>

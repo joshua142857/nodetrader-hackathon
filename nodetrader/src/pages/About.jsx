@@ -5,16 +5,13 @@ const About = () => {
     <div className="container mx-auto mt-10 p-6">
       <h1 className="text-4xl font-bold mb-6 text-gray-800">About Us</h1>
       <p className="text-lg text-gray-600">
-        Welcome to our platform! We are dedicated to providing the best experience possible. Our mission is to create
-        innovative solutions that help our users achieve their goals.
+      Have you ever had a idea about the market but did not that the time or expertise to implement it? 
       </p>
 
       <div className="mt-6">
         <h2 className="text-2xl font-semibold mb-4">Our Story</h2>
         <p className="text-lg text-gray-600">
-          Our platform was founded with a single goal in mind: to simplify complex processes and deliver value to our users.
-          Over the years, we've grown to serve thousands of customers worldwide, and we continue to innovate and improve every
-          day.
+        AlgoFlow is a full stack app that serves as an online trading platform for users to find, develop and deploy machine learning models across prediction markets. Whether you are just starting out in machine learning or a seasoned veteran, our streamless and codeless designs allow for you to take advantage of our models to discover your new trading idea. Leveraging a react flow front end, we are able to visualize beautiful and simple data streams that are not only understandable, but convey the essentials size and flow of the data. Our own proprietary trading models enable anything from simple linear discovery to a mixture of LSTM and GRU recurrent neural networks, developed by our very own data science team. The landing dashboard, with integrations to the market and your own order book, provides information about your profit & loss, risk metrics and market conditions at your fingertips. Future plans to have an internal automated trading systems to extend the train and test to full deployment and internal links to your various wallets will truly make algorithmic trading available to anyone.
         </p>
       </div>
 

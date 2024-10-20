@@ -32,15 +32,15 @@ const LoginPage = () => {
       </div>
 
       {/* Welcome Text */}
-      <h1 className="text-5xl font-extrabold text-white mb-4 text-center tracking-tight">
+      <h1 className="text-5xl font-extrabold text-black mb-4 text-center tracking-tight">
         Welcome to AlgoFlow!
       </h1>
-      <p className="text-lg text-black-200 mb-1 text-center">
+      <p className="text-lg text-black-200 mt-5 mb-0 text-center">
         Sign up to revolutionize your trading experience!
       </p>
 
       {/* Animated Down Arrow */}
-      <div className="mt-8 text-black-300 animate-bounce">
+      <div className="mt-8 text-black-300  mb-3 animate-bounce">
         <p>&#x2193;</p>
       </div>
 
@@ -69,7 +69,7 @@ const LoginPage = () => {
 
       {/* Footer */}
       <footer className="absolute bottom-4 text-sm text-gray-900">
-        <p>&copy; 2024 TradeFlow. All rights reserved.</p>
+        <p>&copy; 2024 AlgoFlow. All rights reserved.</p>
       </footer>
     </div>
   );
