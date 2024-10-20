@@ -1,20 +1,22 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { LuLayoutDashboard, LuBarChart4, LuDatabase } from 'react-icons/lu';
 
-// ICONS
-import { LuLayoutDashboard, LuUser, LuBarChart4 } from 'react-icons/lu';
+const Sidebar = ({ handleExpand, resetStats }) => {
+  const [activeLink, setActiveLink] = useState(0);
 
-const Sidebar = () => {
-  const [activeLink, setActiveLink] = useState(0); 
-
-  const handleLinkClick = (index) => {
+  const handleLinkClick = (index, box) => {
     setActiveLink(index);
+    if (box === 'stats') {
+      handleExpand('stats'); // Expand stats when Dashboard is clicked
+    } else {
+      handleExpand(box); // Expand the selected box when Project Stats or Platforms is clicked
+    }
   };
 
   const SIDEBAR_LINKS = [
-    { id: 1, path: '/', name: 'Dashboard', icon: LuLayoutDashboard},
-    { id: 2, path: '/personal', name: 'Personal', icon: LuUser },
-    { id: 3, path: '/market', name: 'Market', icon: LuBarChart4 },
+    { id: 1, name: 'Dashboard', icon: LuLayoutDashboard, expandBox: 'stats' },
+    { id: 2, name: 'Project Stats', icon: LuDatabase, expandBox: 'project' },
+    { id: 3, name: 'Platforms', icon: LuBarChart4, expandBox: 'platforms' },
   ];
 
   return (
@@ -28,18 +30,18 @@ const Sidebar = () => {
           <li
             key={index}
             className={`font-medium rounded-md py-2 px-5 hover:bg-gray-100 hover:text-indigo-500 ${
-              activeLink === index ? 'bg-indigo-100 text-indigo-500' : '' }`}
+              activeLink === index ? 'bg-indigo-100 text-indigo-500' : ''
+            }`}
           >
-            <Link
-              to={link.path}
-              className="flex justify-center md:justify-start items-center md:space-x-5"
-              onClick={() => handleLinkClick(index)}
+            <button
+              className="flex justify-center md:justify-start items-center md:space-x-5 w-full"
+              onClick={() => handleLinkClick(index, link.expandBox)}
             >
-              <span>{<link.icon />}</span> 
+              <span>{<link.icon />}</span>
               <span className="text-sm text-gray-500 hidden md:flex">
                 {link.name}
               </span>
-            </Link>
+            </button>
           </li>
         ))}
       </ul>

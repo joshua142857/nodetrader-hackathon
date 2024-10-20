@@ -1,94 +1,77 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom'; // Import Link for routing
 import ProjectStatistics from '../components/ProjectStatistics';
 import Platforms from '../components/Platforms';
+import Sidebar from '../components/Sidebar';
+import Nodes from '../pages/Nodes';
 
 const Home = () => {
-  // State to track which box is expanded (can be 'stats', 'project', 'platforms' or null for none)
-  const [expandedBox, setExpandedBox] = useState(null);
+  const [expandedBox, setExpandedBox] = useState('stats'); // Stats is expanded by default
 
   const handleExpand = (box) => {
-    if (expandedBox === box) {
-      setExpandedBox(null); // Contract if clicked again
+    if (box === 'stats') {
+      setExpandedBox('stats'); // Always show stats when "Dashboard" is clicked
+    } else if (box === expandedBox) {
+      setExpandedBox(null); // Collapse the currently expanded box
     } else {
-      setExpandedBox(box); // Expand the selected box
+      setExpandedBox(box); // Expand the new box (either "project" or "platforms")
     }
   };
 
   return (
-    <div className="p-5">
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 gap-4 gap-x-60">
-        {/* Stats Block */}
-        <div
-          className={`transition-all duration-500 ease-in-out ${
-            expandedBox === 'stats'
-              ? 'col-span-2' // Takes the full width when expanded
-              : 'col-span-1' // Default size
-          } ${expandedBox === 'stats' ? 'h-96' : 'h-40'}`}
-        >
-          {/* Button to expand/collapse */}
-          <button
-            onClick={() => handleExpand('stats')}
-            className="bg-blue-500 text-white px-4 py-2 rounded-lg"
-          >
-            {expandedBox === 'stats' ? 'Contract' : 'Expand Stats'}
-          </button>
+    <div className="relative p-5 min-h-screen">
+      {/* Sidebar */}
+      <Sidebar handleExpand={handleExpand} />
 
-          {/* Your Stats Content Goes Here */}
-          {expandedBox === 'stats' ? (
-            <div className="p-4 bg-gray-100 rounded-lg">Full Stats Content</div>
-          ) : (
-            <div className="p-2 bg-gray-300 rounded-lg">Abbreviated Stats</div>
-          )}
-        </div>
-
-        {/* Project Statistics Block */}
-        <div
-          className={`transition-all duration-500 ease-in-out ${
-            expandedBox === 'project'
-              ? 'col-span-2' // Takes the full width when expanded
-              : 'col-span-1' // Default size
-          } ${expandedBox === 'project' ? 'h-96' : 'h-40'}`}
-        >
-          <button
-            onClick={() => handleExpand('project')}
-            className="bg-green-500 text-white px-4 py-2 rounded-lg"
-          >
-            {expandedBox === 'project' ? 'Contract' : 'Expand Project Stats'}
-          </button>
-
-          {/* Conditional rendering based on expansion */}
-          {expandedBox === 'project' ? (
-            <ProjectStatistics />
-          ) : (
-            <div className="p-2 bg-green-300 rounded-lg">
-              Abbreviated Project Statistics
+      {/* Full Stats Section */}
+      <div
+        className={`transition-all duration-500 ease-in-out ${
+          expandedBox === 'stats' ? 'h-full z-10' : 'h-96'
+        }`} // Leave space for sidebar
+      >
+        {expandedBox === 'stats' && (
+          <div className="p-4 bg-gray-100 rounded-lg mt-4">
+            {/* Full Stats Box with Router Link */}
+            <div className="p-4 bg-blue-200 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+              <Link
+                to="/nodes" // The route you want to navigate to
+                className="flex items-center justify-center w-full h-full text-center"
+              >
+                <div className="text-lg font-semibold text-blue-800">Go to Another Page</div>
+              </Link>
             </div>
-          )}
-        </div>
+          </div>
+        )}
+      </div>
 
-        {/* Platforms Block */}
-        <div
-          className={`transition-all duration-500 ease-in-out ${
-            expandedBox === 'platforms'
-              ? 'col-span-2' // Takes the full width when expanded
-              : 'col-span-1' // Default size
-          } ${expandedBox === 'platforms' ? 'h-96' : 'h-40'}`}
-        >
-          <button
-            onClick={() => handleExpand('platforms')}
-            className="bg-purple-500 text-white px-4 py-2 rounded-lg"
-          >
-            {expandedBox === 'platforms' ? 'Contract' : 'Expand Platforms'}
-          </button>
+      {/* Bottom Left - Abbreviated Project Statistics */}
+      <div
+        className={`absolute bottom-36 left-0 transition-all duration-500 ease-in-out ${
+          expandedBox === 'project' ? 'w-full h-2/3 z-20 opacity-100' : 'w-1/3 h-48 opacity-100'
+        } p-4 bg-green-300 rounded-lg ${
+          expandedBox !== 'project' && expandedBox !== null ? 'opacity-0 z-0' : 'opacity-100 z-10'
+        }`}
+      >
+        {expandedBox === 'project' ? (
+          <ProjectStatistics size="full" />
+        ) : (
+          <ProjectStatistics size="abbreviated" />
+        )}
+      </div>
 
-          {expandedBox === 'platforms' ? (
-            <Platforms />
-          ) : (
-            <div className="p-2 bg-purple-300 rounded-lg">
-              Abbreviated Platforms Content
-            </div>
-          )}
-        </div>
+      {/* Bottom Right - Abbreviated Platforms */}
+      <div
+        className={`absolute bottom-36 right-0 transition-all duration-500 ease-in-out ${
+          expandedBox === 'platforms' ? 'w-full h-2/3 z-20 opacity-100' : 'w-1/3 h-48 opacity-100'
+        } p-4 bg-purple-300 rounded-lg ${
+          expandedBox !== 'platforms' && expandedBox !== null ? 'opacity-0 z-0' : 'opacity-100 z-10'
+        }`}
+      >
+        {expandedBox === 'platforms' ? (
+          <Platforms />
+        ) : (
+          <div className="p-2">Abbreviated Platforms Content</div>
+        )}
       </div>
     </div>
   );
