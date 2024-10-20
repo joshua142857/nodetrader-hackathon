@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom'; // Import Link for routing
-import ProjectStatistics from '../components/ProjectStatistics'
-import Platforms from '../components/Platforms'
+import ProjectStatistics from '../components/ProjectStatistics';
+import Platforms from '../components/Platforms';
 import Sidebar from '../components/Sidebar';
 import Nodes from '../pages/Nodes';
 
@@ -74,7 +74,7 @@ const Home = () => {
         )}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
