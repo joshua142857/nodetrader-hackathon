@@ -25,20 +25,20 @@ const Sidebar = ({ handleExpand, resetStats }) => {
   return (
     <div className="w-14 md:w-40 fixed left-0 top-0 z-10 h-screen border-r pt-4 px-2 bg-white">
       <div className="flex items-center justify-center mb-20">
-        <img src="/Drawing.svg" alt="logo" className="w-20 hidden md:flex" />
+        <img src="/Logo.svg" alt="logo" className="w-20 hidden md:flex" />
       </div>
 
       <ul className="mt-20 space-y-10">
         {SIDEBAR_LINKS.map((link, index) => (
           <li
             key={index}
-            className={`font-medium rounded-md py-2 px-3 hover:bg-gray-100 hover:text-indigo-500 ${
-              activeLink === index ? 'bg-indigo-100 text-indigo-500' : ''
+            className={`font-medium rounded-md py-2 px-3 hover:bg-emerald-100 hover:text-indigo-500 ${
+              activeLink === index ? 'bg-emerald-100 text-emerald-500' : ''
             }`}
           >
             <button
               className={`"flex justify-center md:justify-start items-center md:space-x-5 w-full "
-              onClick={() => handleLinkClick(index, link.expandBox)}${activeLink === index ? 'bg-indigo-100 text-indigo-500' : '' }`}
+              onClick={() => handleLinkClick(index, link.expandBox)}${activeLink === index ? 'bg-emerald-100 text-emerald-500' : '' }`}
               >
             <Link
               to={link.path || '#'} // Use # if no path is specified
@@ -56,7 +56,7 @@ const Sidebar = ({ handleExpand, resetStats }) => {
       </ul>
       <div className="w-full absolute bottom-5 left-0 px-4 py-2 cursor-pointer text-center">
 
-        <p className="flex items-center justify-center space-x-2 text-xs text-white py-2 px-5 bg-gradient-to-r from-amber-700 to-yellow-800 rounded-full">
+        <p className="flex items-center justify-center space-x-2 text-xs text-black py-2 px-5 bg-gradient-to-r from-emerald-300 to-green-500 rounded-full">
           <span className="hidden md:flex text-base">Log Out</span>
         </p>
       </div>

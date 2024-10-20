@@ -32,12 +32,12 @@ const Home = () => {
         {expandedBox === 'stats' && (
           <div className="p-4 bg-gray-100 rounded-lg mt-4">
             {/* Full Stats Box with Router Link */}
-            <div className="p-4 bg-blue-200 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <div className="p-4 bg-emerald-300 border rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
               <Link
                 to="/nodes" // The route you want to navigate to
                 className="flex items-center justify-center w-full h-full text-center"
               >
-                <div className="text-lg font-semibold text-blue-800">Go to Another Page</div>
+                <div className="text-lg font-semibold text-black">Node Manager</div>
               </Link>
             </div>
           </div>
@@ -64,7 +64,7 @@ const Home = () => {
       <div
         className={`absolute bottom-36 right-0 transition-all duration-500 ease-in-out ${
           expandedBox === 'platforms' ? 'w-full h-2/3 z-20 opacity-100' : 'w-1/3 h-48 opacity-100'
-        } p-4 bg-purple-300 rounded-lg ${
+        } p-4 bg-amber-200 rounded-lg ${
           expandedBox !== 'platforms' && expandedBox !== null ? 'opacity-0 z-0' : 'opacity-100 z-10'
         }`}
         style={{ overflow: 'hidden' }} // Ensure no content spills over
