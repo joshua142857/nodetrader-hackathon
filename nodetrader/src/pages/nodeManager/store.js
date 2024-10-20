@@ -2,6 +2,16 @@ import { applyNodeChanges, applyEdgeChanges } from "@xyflow/react";
 import { nanoid } from "nanoid";
 import { create } from "zustand";
 
+const connect = (sourceId, targetId) => {
+  console.log(`Connecting ${sourceId} -> ${targetId}`);
+  // Here, you would add the actual connection logic, such as updating state or a drawing library
+};
+
+const disconnect = (sourceId, targetId) => {
+  console.log(`Disconnecting ${sourceId} -> ${targetId}`);
+  // Here, you would add the actual disconnection logic
+};
+
 export const useStore = create((set, get) => ({
   nodes: [
     { id: "input", type: "in", position: {x: 100, y: 250 } },
