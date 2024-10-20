@@ -1,0 +1,29 @@
+html,
+body {
+  margin: 0;
+  font-family: sans-serif;
+}
+
+#app {
+  width: 100vw;
+  height: 200vh;
+}
+
+.dndflow {
+  display: flex;
+  height: 100vh;
+}
+
+.reactflow-wrapper {
+  flex-grow: 1;
+  height: 100%;
+  position: relative;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-right: 1px solid #020202;
+  overflow-y: auto;
+}

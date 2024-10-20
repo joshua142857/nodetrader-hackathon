@@ -1,49 +1,77 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { ReactFlow, 
+   ReactFlowProvider,
+  Background,
+  Panel,
+  useReactFlow,
+} from "@xyflow/react";
+import { shallow } from "zustand/shallow";
+import { useStore } from "./nodeManager/store";
+import { tw } from "twind";
+import MarketDataNode from "./nodeManager/Input";
+import Out from "./nodeManager/Output";
+import NormalizationNode from "./nodeManager/Normalization";
 
-const Nodes = () => {
-  return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center p-6">
-      <div className="max-w-4xl w-full bg-white shadow-lg rounded-lg p-8">
-        {/* Header Section */}
-        <div className="mb-6 text-center">
-          <h1 className="text-3xl font-semibold text-gray-800">Nodes Page</h1>
-          <p className="text-gray-600 mt-2">Welcome to the Nodes page. Here you can manage and visualize your nodes.</p>
-        </div>
+import "@xyflow/react/dist/style.css";
 
-        {/* Content Section */}
-        <div className="space-y-6">
-          {/* Node Controls */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-            <div className="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow">
-              <h2 className="text-xl font-semibold text-gray-700">Node Control 1</h2>
-              <p className="text-gray-500 mt-2">Control and manage node operations.</p>
-              <button className="mt-4 bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition">Manage Node</button>
-            </div>
 
-            <div className="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow">
-              <h2 className="text-xl font-semibold text-gray-700">Node Control 2</h2>
-              <p className="text-gray-500 mt-2">View detailed statistics of nodes.</p>
-              <button className="mt-4 bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition">View Stats</button>
-            </div>
-
-            <div className="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow">
-              <h2 className="text-xl font-semibold text-gray-700">Node Control 3</h2>
-              <p className="text-gray-500 mt-2">Configure node settings.</p>
-              <button className="mt-4 bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition">Configure</button>
-            </div>
-          </div>
-
-          {/* Link back to the Dashboard */}
-          <div className="text-center mt-12">
-            <Link to="/home" className="text-indigo-600 hover:text-indigo-800 transition-colors">
-              &larr; Back to Dashboard
-            </Link>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+const nodeTypes = {
+  in: MarketDataNode,
+  out: Out,
+  normalize: NormalizationNode
 };
 
-export default Nodes;
+const selector = (store) => ({
+  nodes: store.nodes,
+  edges: store.edges,
+  onNodesChange: store.onNodesChange,
+  onNodesDelete: store.onNodesDelete,
+  onEdgesChange: store.onEdgesChange,
+  onEdgesDelete: store.onEdgesDelete,
+  addEdge: store.addEdge,
+  createNode: store.createNode,
+});
+
+export default function App() {
+  const store = useStore(selector, shallow);
+
+  return (
+    <ReactFlowProvider>
+      <div style={{ width: '100vw', height: '100vh' }}>
+        <ReactFlow
+          nodeTypes={nodeTypes}
+          nodes={store.nodes}
+          edges={store.edges}
+          onNodesChange={store.onNodesChange}
+          onNodesDelete={store.onNodesDelete}
+          onEdgesChange={store.onEdgesChange}
+          onEdgesDelete={store.onEdgesDelete}
+          onConnect={store.addEdge}
+          fitView
+        >
+          <Panel className={tw('space-x-4')} position="center">
+            <button
+              className={tw('px-2 py-1 rounded bg-white shadow')}
+              onClick={() => store.createNode('in')}
+            >
+              Add Market Data (Input)
+            </button>
+            <button
+              className={tw('px-8 py-3 rounded bg-white shadow')}
+              onClick={() => store.createNode('out')}
+            >
+              Submit Trades (Output)
+            </button>
+            <button
+              className={tw('px-8 py-3 rounded bg-white shadow')}
+              onClick={() => store.createNode('normalize')}
+            >
+               Normalize Data
+            </button>
+          </Panel>
+          <Background />
+        </ReactFlow>
+      </div>
+    </ReactFlowProvider>
+  );
+}
