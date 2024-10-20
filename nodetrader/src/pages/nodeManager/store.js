@@ -14,8 +14,8 @@ const disconnect = (sourceId, targetId) => {
 
 export const useStore = create((set, get) => ({
   nodes: [
-    { id: "input", type: "in", position: {x: 100, y: 250 } },
-    { id: "output", type: "out", position: {x: 100, y: 250 } }
+//    { id: "input", type: "in", position: {x: 100, y: 250 } },
+//    { id: "output", type: "out", position: {x: 100, y: 250 } }
   ],
   edges: [
   ],

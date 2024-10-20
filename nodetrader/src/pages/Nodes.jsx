@@ -9,12 +9,14 @@ import { shallow } from "zustand/shallow";
 import { useStore } from "./nodeManager/store";
 import { tw } from "twind";
 import MarketDataNode from "./nodeManager/Input";
+import Out from "./nodeManager/Output";
 
 import "@xyflow/react/dist/style.css";
 
 
 const nodeTypes = {
-  in: MarketDataNode
+  in: MarketDataNode,
+  out: Out
 };
 
 const selector = (store) => ({
@@ -45,12 +47,18 @@ export default function App() {
           onConnect={store.addEdge}
           fitView
         >
-          <Panel className={tw('space-x-4')} position="top-right">
+          <Panel className={tw('space-x-4')} position="center">
             <button
               className={tw('px-2 py-1 rounded bg-white shadow')}
               onClick={() => store.createNode('in')}
             >
               Add Market Data (Input)
+            </button>
+            <button
+              className={tw('px-8 py-3 rounded bg-white shadow')}
+              onClick={() => store.createNode('out')}
+            >
+              Submit Trades (Output)
             </button>
           </Panel>
           <Background />

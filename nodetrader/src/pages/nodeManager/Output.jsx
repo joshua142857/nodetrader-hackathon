@@ -7,7 +7,7 @@ const providerOptions = [
   { label: "Polymarket", value: "polymarket" },
 ];
 
-const MarketDataNode = () => {
+const Out = () => {
   const [selectedProvider, setSelectedProvider] = useState();
   const [inputData, setInputData] = useState({});
 
@@ -34,7 +34,7 @@ const MarketDataNode = () => {
               value={inputData["apikey"] || ""}
               onChange={(e) => handleInputChange("apikey", e.target.value)}
             />
-            <label className={nodeStyles.label}>Market:</label>
+            <label className={nodeStyles.label}>Out:</label>
             <input
               className={nodeStyles.inputField}
               type="text"
@@ -57,7 +57,7 @@ const MarketDataNode = () => {
 
   return (
     <div className={nodeStyles.container}>
-      <p className={nodeStyles.header("bg-blue-500")}>Market Data</p>
+      <p className={nodeStyles.header("bg-blue-500")}>Out Data</p>
       <label className={nodeStyles.fieldContainer}>
         <p className={nodeStyles.label}>Provider</p>
         <select
@@ -81,9 +81,9 @@ const MarketDataNode = () => {
           {renderProviderFields()}
         </div>
       )}
-      <Handle className={nodeStyles.handle} type="source" position="right" />
+      <Handle className={nodeStyles.handle} type="target" position="left" />
     </div>
   );
 };
 
-export default MarketDataNode;
+export default Out;
