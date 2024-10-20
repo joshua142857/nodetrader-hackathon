@@ -10,7 +10,7 @@ const Layout = () => {
 
       <div className="w-full ml-16 md:ml-56">
         <Header />
-      
+        
         <div className="p-4">
           <Outlet />
         </div>
