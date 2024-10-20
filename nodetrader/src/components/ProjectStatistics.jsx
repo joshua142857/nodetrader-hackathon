@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Chart from 'react-apexcharts'; // Use react-apexcharts
+import Chart from 'react-apexcharts';
 
 const ProjectStatistics = () => {
   const [chartOptions] = useState({

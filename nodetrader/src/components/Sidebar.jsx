@@ -20,7 +20,7 @@ const Sidebar = () => {
   return (
     <div className="w-14 md:w-40 fixed left-0 top-0 z-10 h-screen border-r pt-4 px-2 bg-white">
       <div className="flex items-center justify-center mb-4">
-        <img src="/Drawing.svg" alt="logo" className="w-20 hidden md:flex rounded-full border-2 border-gray-300" />
+        <img src="/Drawing.svg" alt="logo" className="w-20 hidden md:flex" />
       </div>
 
       <ul className="mt-6 space-y-6">
@@ -43,12 +43,6 @@ const Sidebar = () => {
           </li>
         ))}
       </ul>
-
-      <div className="w-full absolute bottom-5 left-0 px-4 py-2 cursor-pointer text-center">
-        <p className="flex items-center space-x-2 text-xs text-white py-2 px-5 bg-gradient-to-r from-indigo-500 to-violet-600 rounded-full">
-          <span>?</span> <span className="hidden md:flex">Need Help?</span>
-        </p>
-      </div>
     </div>
   );
 };
