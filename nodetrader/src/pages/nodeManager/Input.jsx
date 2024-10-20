@@ -23,8 +23,26 @@ const MarketDataNode = () => {
 
   const renderProviderFields = () => {
     switch (selectedProvider) {
-      case "kalshi":
       case "polymarket":
+        return (
+          <div>
+            <label className={nodeStyles.label}>Market:</label>
+            <input
+              className={nodeStyles.inputField}
+              type="text"
+              value={inputData["market"] || ""}
+              onChange={(e) => handleInputChange("market", e.target.value)}
+            />
+            <label className={nodeStyles.label}>Date Range:</label>
+            <input
+              className={nodeStyles.inputField + " nodrag"}
+              type="text"
+              value={inputData["dateRange"] || ""}
+              onChange={(e) => handleInputChange("dateRange", e.target.value)}
+            />
+          </div>
+        );
+      case "kalshi":
         return (
           <div>
             <label className={nodeStyles.label}>Api Key:</label>

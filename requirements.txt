@@ -1,2 +1,8 @@
 nodejs==0.1.1
 optional-django==0.1.0
+
+fastapi
+uvicorn
+scikit-learn
+tensorflow
+polars

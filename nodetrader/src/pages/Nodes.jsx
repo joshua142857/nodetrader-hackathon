@@ -11,14 +11,15 @@ import { tw } from "twind";
 import MarketDataNode from "./nodeManager/Input";
 import Out from "./nodeManager/Output";
 import NormalizationNode from "./nodeManager/Normalization";
-
+import MachineLearningNode from "./nodeManager/MachineLearning";
 import "@xyflow/react/dist/style.css";
 
 
 const nodeTypes = {
   in: MarketDataNode,
   out: Out,
-  normalize: NormalizationNode
+  normalize: NormalizationNode, 
+  ml: MachineLearningNode
 };
 
 const selector = (store) => ({
@@ -67,6 +68,12 @@ export default function App() {
               onClick={() => store.createNode('normalize')}
             >
                Normalize Data
+            </button>
+            <button
+              className={tw('px-8 py-3 rounded bg-white shadow')}
+              onClick={() => store.createNode('ml')}
+            >
+               Machine Learning
             </button>
           </Panel>
           <Background />
