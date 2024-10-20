@@ -8,7 +8,7 @@ const ProjectStatistics = () => {
       toolbar: {
         show: false,
       },
-      responsive: true, // Ensure chart is responsive
+      responsive: true,
     },
     tooltip: {
       enabled: true,

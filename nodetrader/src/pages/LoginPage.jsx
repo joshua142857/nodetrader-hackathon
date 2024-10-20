@@ -10,16 +10,12 @@ const LoginPage = () => {
     e.preventDefault();
     setError("");
 
-    // Validate email (basic example)
     if (!email) {
       setError("Please enter a valid email.");
       return;
     }
 
-    // Simulate API call to sign up (you can replace this with actual API logic)
     try {
-      // Normally you'd send this data to the backend
-      // For now, we're just redirecting with the email passed via navigate.
       navigate("/home", { state: { email } });
     } catch (err) {
       setError("An error occurred while signing up.");
@@ -28,11 +24,11 @@ const LoginPage = () => {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-800 relative bg-cover bg-center bg-no-repeat"
-      style={{ backgroundImage: "url('https://images.unsplash.com/photo-1518837695005-2083093ee35b')" }}
+      style={{ backgroundImage: "url('/cookie1.jpg')" }}
     >
       {/* Logo Section */}
       <div className="mb-10">
-        <img src="https://via.placeholder.com/120x120" alt="Logo" className="w-24 h-24 object-contain rounded-full shadow-lg"/>
+        <img src="./Drawing.svg" alt="Logo" className="w-24 h-24 object-contain rounded-full shadow-lg"/>
       </div>
 
       {/* Welcome Text */}
@@ -72,7 +68,7 @@ const LoginPage = () => {
       </form>
 
       {/* Footer */}
-      <footer className="absolute bottom-4 text-sm text-gray-400">
+      <footer className="absolute bottom-4 text-sm text-gray-900">
         <p>&copy; 2024 TradeFlow. All rights reserved.</p>
       </footer>
     </div>

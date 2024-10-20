@@ -2,9 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 // ICONS
-import { LuBox, LuUser, LuMessageSquare, LuCalendar } from 'react-icons/lu';
-import { FaSuitcase } from 'react-icons/fa';
-import { TbUsers } from 'react-icons/tb';
+import { LuLayoutDashboard, LuUser, LuBarChart4 } from 'react-icons/lu';
 
 const Sidebar = () => {
   const [activeLink, setActiveLink] = useState(0); 
@@ -14,18 +12,15 @@ const Sidebar = () => {
   };
 
   const SIDEBAR_LINKS = [
-    { id: 1, path: '/', name: 'Dashboard', icon: LuBox },
-    { id: 2, path: '/members', name: 'Members', icon: TbUsers },
-    { id: 3, path: '/messages', name: 'Messages', icon: LuMessageSquare },
-    { id: 4, path: '/projects', name: 'Projects', icon: FaSuitcase },
-    { id: 5, path: '/clients', name: 'Clients', icon: LuUser },
-    { id: 6, path: '/work', name: 'Work Plan', icon: LuCalendar },
+    { id: 1, path: '/', name: 'Dashboard', icon: LuLayoutDashboard},
+    { id: 2, path: '/personal', name: 'Personal', icon: LuUser },
+    { id: 3, path: '/market', name: 'Market', icon: LuBarChart4 },
   ];
 
   return (
-    <div className="w-16 md:w-56 fixed left-0 top-0 z-10 h-screen border-r pt-8 px-4 bg-white">
-      <div className="mb-8">
-        <img src="/logo.svg" alt="logo" className="w-28 hidden md:flex" />
+    <div className="w-14 md:w-40 fixed left-0 top-0 z-10 h-screen border-r pt-4 px-2 bg-white">
+      <div className="flex items-center justify-center mb-4">
+        <img src="/Drawing.svg" alt="logo" className="w-20 hidden md:flex rounded-full border-2 border-gray-300" />
       </div>
 
       <ul className="mt-6 space-y-6">
