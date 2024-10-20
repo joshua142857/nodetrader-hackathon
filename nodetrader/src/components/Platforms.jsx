@@ -1,36 +1,43 @@
-import React from 'react'
-import { DiAndroid } from 'react-icons/di'
-import { FaTabletAlt } from 'react-icons/fa'
-import { FaApple } from 'react-icons/fa'
-import { CiGlobe } from 'react-icons/ci'
+import React, { useState, useEffect } from 'react';
 
 const Platforms = () => {
+  const [volumeData, setVolumeData] = useState([]);
+  const [liquidityData, setLiquidityData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchMarketData = async () => {
+      try {
+        const response = await fetch('http://localhost:8000/market-stats');
+        const data = await response.json();
+
+        // Assuming the API returns two arrays: volumeData and liquidityData
+        setVolumeData(data[0]);  // First array is volumeData
+        setLiquidityData(data[1]);  // Second array is liquidityData
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching market data:', error);
+        setLoading(false);
+      }
+    };
+
+    fetchMarketData();
+  }, []);
+
   return (
     <div className ="p-5 bg-white rounded-xl">
-      <h1 className="text-2xl font-bold text-gray-700">Platforms </h1>
+      <h1 className="text-2xl font-bold text-gray-700">Market Interests </h1>
       <div className="p-2 grid grid-cols-2 gap-8">
           <div className ="space-y-2 text-gray-500">
-            <h1 className="text-2xl font-bold">58</h1>
+            <p className="text-2xl font-bold">58</p>
             <p className="flex items-center space-x-2">
-              <CiGlobe/> <span>website</span>
+                <span>website</span>
             </p>
           </div>
           <div>
-          <h1 className="text-2xl font-bold">87</h1>
+          <p className="text-2xl font-bold">87</p>
           <p className="flex items-center space-x-2">
-              <FaApple/> <span>IOS</span>
-            </p>
-          </div>
-          <div>
-          <h1 className="text-2xl font-bold">58</h1>
-          <p className="flex items-center space-x-2">
-              <DiAndroid/> <span>Android</span>
-            </p>
-          </div>
-          <div>
-          <h1 className="text-2xl font-bold">58</h1>
-          <p className="flex items-center space-x-2">
-              <FaTabletAlt/> <span>Tablets</span>
+              <span>IOS</span>
             </p>
           </div>
       </div>
