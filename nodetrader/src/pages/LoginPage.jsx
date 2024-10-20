@@ -24,23 +24,23 @@ const LoginPage = () => {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-800 relative bg-cover bg-center bg-no-repeat"
-      style={{ backgroundImage: "url('/cookie1.jpg')" }}
+      style={{ backgroundImage: "url('/background.jpg')" }}
     >
       {/* Logo Section */}
       <div className="mb-10">
-        <img src="./Drawing.svg" alt="Logo" className="w-24 h-24 object-contain rounded-full shadow-lg"/>
+        <img src="./Logo.svg" alt="Logo" className="w-24 h-24 object-contain rounded-full shadow-lg"/>
       </div>
 
       {/* Welcome Text */}
-      <h1 className="text-5xl font-extrabold text-white mb-4 text-center tracking-tight">
+      <h1 className="text-5xl font-extrabold text-black mb-4 text-center tracking-tight">
         Welcome to AlgoFlow!
       </h1>
-      <p className="text-lg text-black-200 mb-1 text-center">
+      <p className="text-lg text-black-200 mt-5 mb-0 text-center">
         Sign up to revolutionize your trading experience!
       </p>
 
       {/* Animated Down Arrow */}
-      <div className="mt-8 text-black-300 animate-bounce">
+      <div className="mt-8 text-black-300  mb-3 animate-bounce">
         <p>&#x2193;</p>
       </div>
 
@@ -50,7 +50,7 @@ const LoginPage = () => {
           <input
             type="email"
             placeholder="Enter your email"
-            className="border border-gray-300 rounded-lg px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+            className="border border-gray-200 rounded-lg px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
@@ -61,7 +61,7 @@ const LoginPage = () => {
 
         <button
           type="submit"
-          className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-lg w-full transition-all duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50"
+          className="bg-emerald-400 hover:bg-emerald-600 text-white font-bold py-2 px-4 rounded-lg w-full transition-all duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50"
         >
           Sign up
         </button>
@@ -69,7 +69,7 @@ const LoginPage = () => {
 
       {/* Footer */}
       <footer className="absolute bottom-4 text-sm text-gray-900">
-        <p>&copy; 2024 TradeFlow. All rights reserved.</p>
+        <p>&copy; 2024 AlgoFlow. All rights reserved.</p>
       </footer>
     </div>
   );

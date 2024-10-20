@@ -1,20 +1,18 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'; // Import Link for routing
+import { Link } from 'react-router-dom'; 
 import ProjectStatistics from '../components/ProjectStatistics';
 import Platforms from '../components/Platforms';
 import Sidebar from '../components/Sidebar';
-import Nodes from '../pages/Nodes';
 
 const Home = () => {
-  const [expandedBox, setExpandedBox] = useState('stats'); // Stats is expanded by default
-
+  const [expandedBox, setExpandedBox] = useState('stats');
   const handleExpand = (box) => {
     if (box === 'stats') {
-      setExpandedBox('stats'); // Always show stats when "Dashboard" is clicked
+      setExpandedBox('stats'); 
     } else if (box === expandedBox) {
-      setExpandedBox(null); // Collapse the currently expanded box
+      setExpandedBox(null); 
     } else {
-      setExpandedBox(box); // Expand the new box (either "project" or "platforms")
+      setExpandedBox(box); 
     }
   };
 
@@ -27,53 +25,44 @@ const Home = () => {
       <div
         className={`transition-all duration-500 ease-in-out ${
           expandedBox === 'stats' ? 'h-full z-10' : 'h-96'
-        }`} // Leave space for sidebar
+        }`}
       >
         {expandedBox === 'stats' && (
           <div className="p-4 bg-gray-100 rounded-lg mt-4">
-            {/* Full Stats Box with Router Link */}
-            <div className="p-4 bg-blue-200 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <div className="p-4 bg-emerald-300 border rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
               <Link
-                to="/nodes" // The route you want to navigate to
+                to="/nodes"
                 className="flex items-center justify-center w-full h-full text-center"
               >
-                <div className="text-lg font-semibold text-blue-800">Go to Another Page</div>
+                <div className="text-lg font-semibold text-black">Node Manager</div>
               </Link>
             </div>
           </div>
         )}
       </div>
 
-      {/* Bottom Left - Abbreviated Project Statistics */}
+      {/* Bottom Left -  Project Statistics */}
       <div
-        className={`absolute bottom-36 left-0 transition-all duration-500 ease-in-out ${
-          expandedBox === 'project' ? 'w-full h-2/3 z-20 opacity-100' : 'w-1/3 h-48 opacity-100'
-        } p-4 bg-green-300 rounded-lg ${
+        className={`absolute bottom-24 left-0 transition-all duration-500 ease-in-out ${
+          expandedBox === 'project' ? 'w-full h-3/4 z-20 opacity-100' : 'w-2/5 h-64 opacity-100'
+        } p-6 bg-green-300 rounded-lg ${
           expandedBox !== 'project' && expandedBox !== null ? 'opacity-0 z-0' : 'opacity-100 z-10'
         }`}
-        style={{ overflow: 'hidden' }} // Ensure no content spills over
+        style={{ overflow: 'hidden' }} 
       >
-        {expandedBox === 'project' ? (
-          <ProjectStatistics size="full" />
-        ) : (
-          <ProjectStatistics size="abbreviated" />
-        )}
+        <ProjectStatistics expanded={expandedBox === 'project'} />
       </div>
 
-      {/* Bottom Right - Abbreviated Platforms */}
+      {/* Bottom Right - Platforms */}
       <div
-        className={`absolute bottom-36 right-0 transition-all duration-500 ease-in-out ${
-          expandedBox === 'platforms' ? 'w-full h-2/3 z-20 opacity-100' : 'w-1/3 h-48 opacity-100'
-        } p-4 bg-purple-300 rounded-lg ${
+        className={`absolute bottom-24 right-0 transition-all duration-500 ease-in-out ${
+          expandedBox === 'platforms' ? 'w-full h-3/4 z-20 opacity-100' : 'w-2/5 h-64 opacity-100'
+        } p-6 bg-amber-200 rounded-lg ${
           expandedBox !== 'platforms' && expandedBox !== null ? 'opacity-0 z-0' : 'opacity-100 z-10'
         }`}
-        style={{ overflow: 'hidden' }} // Ensure no content spills over
+        style={{ overflow: 'hidden' }} 
       >
-        {expandedBox === 'platforms' ? (
-          <Platforms />
-        ) : (
-          <div className="p-2">Abbreviated Platforms Content</div>
-        )}
+        <Platforms />
       </div>
     </div>
   );
