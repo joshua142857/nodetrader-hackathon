@@ -1,6 +1,7 @@
 from contextlib import asynccontextmanager
 from backend.plot_data import landing_data
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from backend.database import init_db
 
 @asynccontextmanager
@@ -9,6 +10,16 @@ async def lifespan(app: FastAPI):
     yield
 
 app = FastAPI(lifespan=lifespan)
+
+origins = ["http://localhost:5173"]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/market-stats")
 async def get_market_stats():
