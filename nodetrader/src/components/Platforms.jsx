@@ -24,26 +24,51 @@ const Platforms = () => {
     fetchMarketData();
   }, []);
 
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   return (
-    <div className ="p-5 bg-white rounded-xl">
-      <h1 className="text-2xl font-bold text-gray-700">Market Interests </h1>
-      <div className="p-2 grid grid-cols-2 gap-8">
-          <div className ="space-y-2 text-gray-500">
-            <p className="text-2xl font-bold">58</p>
-            <p className="flex items-center space-x-2">
-                <span>website</span>
-            </p>
-          </div>
-          <div>
-          <p className="text-2xl font-bold">87</p>
-          <p className="flex items-center space-x-2">
-              <span>IOS</span>
-            </p>
-          </div>
+    <div className="p-5 bg-white rounded-xl">
+      <h1 className="text-2xl font-bold text-gray-700">Market Interests</h1>
+
+      {/* Volume Data Section */}
+      <div className="p-2">
+        <h2 className="text-xl font-bold text-gray-600">Volume Data</h2>
+        <div className="grid grid-cols-2 gap-8 mt-4">
+          {volumeData.map((market, index) => (
+            <div key={index} className="space-y-1 text-black-500">
+              <p className="text-xl flex items-center space-x-2">
+              <span>{market[0]}</span>
+              </p>
+              <p className="font-bold">{(market[1]).toLocaleString('en-US', {
+                          style: 'currency',
+                          currency: 'USD',
+                        })}</p>
+            </div>
+          ))}
+        </div>
       </div>
 
+      {/* Liquidity Data Section */}
+      <div className="p-2 mt-8">
+        <h2 className="text-xl font-bold text-gray-600">Liquidity Data</h2>
+        <div className="grid grid-cols-2 gap-8 mt-4">
+          {liquidityData.map((market, index) => (
+            <div key={index} className="space-y-1 text-black-500">
+              <p className="text-xl flex items-center space-x-2">
+              <span>{market[0]}</span>
+              </p>
+              <p className="font-bold">{(market[1]).toLocaleString('en-US', {
+                          style: 'currency',
+                          currency: 'USD',
+                        })}</p>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Platforms
+export default Platforms;

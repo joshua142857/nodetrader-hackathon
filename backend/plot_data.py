@@ -13,7 +13,7 @@ import math
 
 def landing_data(name):
     params = {'closed': 'False',
-              'limit':5,
+              'limit':2,
               'ascending': False,
               'order':name}
 

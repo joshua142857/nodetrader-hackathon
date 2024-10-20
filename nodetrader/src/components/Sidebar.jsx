@@ -15,9 +15,9 @@ const Sidebar = ({ handleExpand, resetStats }) => {
   };
 
   const SIDEBAR_LINKS = [
-    { id: 1, path: '/', name: 'Dashboard', icon: LuLayoutDashboard, expandBox: 'stats' },
-    { id: 2, name: 'Project Stats', icon: LuUser, expandBox: 'project' },
-    { id: 3, name: 'Market', icon: LuBarChart4, expandBox: 'platforms' },
+    { id: 1, path: '/home', name: 'Dashboard', icon: LuLayoutDashboard, expandBox: 'stats' },
+    { id: 2, path: '/home', name: 'Project Stats', icon: LuUser, expandBox: 'project' },
+    { id: 3, path: '/home', name: 'Market', icon: LuBarChart4, expandBox: 'platforms' },
     { id: 4, path: '/about', name: 'About', icon: LuInfo },
     { id: 6, path: '/settings', name: 'Settings', icon: LuCog },
   ];
@@ -32,16 +32,14 @@ const Sidebar = ({ handleExpand, resetStats }) => {
         {SIDEBAR_LINKS.map((link, index) => (
           <li
             key={index}
-            className={`font-medium rounded-md py-2 px-0 hover:bg-gray-100 hover:text-indigo-500 ${
+            className={`font-medium rounded-md py-2 px-3 hover:bg-gray-100 hover:text-indigo-500 ${
               activeLink === index ? 'bg-indigo-100 text-indigo-500' : ''
             }`}
           >
             <button
-              className="flex justify-center md:justify-start items-center md:space-x-5 w-full"
-              onClick={() => handleLinkClick(index, link.expandBox)}
-            className={`font-medium rounded-md py-2 px-3 hover:bg-gray-100 hover:text-indigo-500 ${
-              activeLink === index ? 'bg-indigo-100 text-indigo-500' : '' }`}
-          >
+              className={`"flex justify-center md:justify-start items-center md:space-x-5 w-full "
+              onClick={() => handleLinkClick(index, link.expandBox)}${activeLink === index ? 'bg-indigo-100 text-indigo-500' : '' }`}
+              >
             <Link
               to={link.path || '#'} // Use # if no path is specified
               className="flex justify-center md:justify-start items-center md:space-x-5 w-full"
@@ -56,12 +54,6 @@ const Sidebar = ({ handleExpand, resetStats }) => {
           </li>
         ))}
       </ul>
-
-      <div className="w-full absolute bottom-16 left-0 px-4 py-2 cursor-pointer text-center">
-        <p className="flex items-center justify-center space-x-2 text-xs text-white py-2 px-5 bg-gradient-to-r from-gray-400 to-gray-900 rounded-full">
-          <span className="hidden md:flex text-base">Theme</span>
-        </p>
-      </div>
       <div className="w-full absolute bottom-5 left-0 px-4 py-2 cursor-pointer text-center">
 
         <p className="flex items-center justify-center space-x-2 text-xs text-white py-2 px-5 bg-gradient-to-r from-amber-700 to-yellow-800 rounded-full">

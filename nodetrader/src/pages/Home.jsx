@@ -51,6 +51,7 @@ const Home = () => {
         } p-4 bg-green-300 rounded-lg ${
           expandedBox !== 'project' && expandedBox !== null ? 'opacity-0 z-0' : 'opacity-100 z-10'
         }`}
+        style={{ overflow: 'hidden' }} // Ensure no content spills over
       >
         {expandedBox === 'project' ? (
           <ProjectStatistics size="full" />
@@ -66,6 +67,7 @@ const Home = () => {
         } p-4 bg-purple-300 rounded-lg ${
           expandedBox !== 'platforms' && expandedBox !== null ? 'opacity-0 z-0' : 'opacity-100 z-10'
         }`}
+        style={{ overflow: 'hidden' }} // Ensure no content spills over
       >
         {expandedBox === 'platforms' ? (
           <Platforms />

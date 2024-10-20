@@ -3,6 +3,7 @@ from backend.plot_data import landing_data
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from backend.model_handlers import train_logistic_model, train_rnn_model, train_linear_model
+from fastapi.middleware.cors import CORSMiddleware
 from backend.database import init_db
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -12,6 +13,16 @@ async def lifespan(app: FastAPI):
     yield
 
 app = FastAPI(lifespan=lifespan)
+
+origins = ["http://localhost:5173"]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/market-stats")
 async def get_market_stats():
