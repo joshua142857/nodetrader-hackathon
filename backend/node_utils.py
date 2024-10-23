@@ -62,7 +62,7 @@ def logistic_alpha_models(x_cols, y_cols, data):
         y_train, y_test = train_test_split(y)
         w, iteration,error,grads = logistic_reg(x_train, y_train, np.zeros(len(x_train[0])), 10**4, .1, 10**-4, .05, 1)
         Eout = cross_entropy(x_test, y_test,w)
-        weights.append(w)
+        weights.append(w.tolist() if isinstance(w, np.ndarray) else w)
         test_error.append(Eout)
     return weight_columns, weights, test_error
 

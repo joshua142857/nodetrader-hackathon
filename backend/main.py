@@ -78,4 +78,4 @@ async def train_model(request: TrainModelRequest):
     else:
         raise HTTPException(status_code=400, detail="Invalid model type")
 
-    return {"status": "success", "results": results}
+    return JSONResponse(content={"status": "success", "results": results})

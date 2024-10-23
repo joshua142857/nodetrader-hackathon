@@ -53,7 +53,7 @@ def open_data():
         aggregate_function='first'  # or 'sum', 'mean', etc., depending on your needs
     )
     df = df.fill_null(strategy="forward")
-    return df
+    return df, x_ids, y_ids
     # display(df,df)
     # model1 = logistic_alpha_models(x_ids, y_ids, df)
     # model2 = RNN_alpha_models(x_ids, y_ids, df)
