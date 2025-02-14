@@ -9,7 +9,7 @@ Have you ever had an idea about the market but did not have the time or expertis
 Frontend: React with Vite, ReactFlow<br />
 Backend: FastAPI Python<br />
 Database: SQLite<br />
-Math and Data Retrieval: Jupyter Notebook
+Math and Data Retrieval: TensorFlow, Jupyter Notebook
 
 ### Demo:
 https://drive.google.com/file/d/1zMvkqabsfCoKVzznLyq8eyAzvb_y8Um6/view?usp=drive_link
